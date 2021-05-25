@@ -1,6 +1,6 @@
 # eChain Deployment workflow
 Please follow the instructions below and run the commands
-
+![alt text](https://github.com/NaViGatorFL/eChain/blob/master/echain-deployment-architecture.png)
 ## Step 0
 Install Ubuntu 20.04 and then install Docker 20.10.4+
 
