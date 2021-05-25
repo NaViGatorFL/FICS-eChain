@@ -1,6 +1,10 @@
 # eChain Deployment workflow
-Please follow the instructions below and run the commands
+eChain deployment architecture is presented in the below diagram. The blockchain network is developed using the Minifabrci quick prototyping tool. Each peers are docker containers and hold the copies of blockchain ledgers. Minifabric tool provides a method to deploy chaincodes and applications. The applications are hosted in a docker container named 'apprun'. However, this container is not suitable for rich internet (front-end) applications. Hence, the apprun container is used as a Blockchain API gateway aka Fabric Blockchain API connector (the middle component on the picture). The de-facto DApp (front-end Server) is developed in the first block on the diagram from the left. Both the Blockchain API connector and DApp is developed using Node.js. 
+
 ![alt text](https://github.com/NaViGatorFL/eChain/blob/master/echain-deployment-architecture.png)
+
+Please follow the instructions below and run the commands
+
 ## Step 0
 Install Ubuntu 20.04 and then install Docker 20.10.4+
 
