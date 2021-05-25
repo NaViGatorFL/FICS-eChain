@@ -81,7 +81,7 @@ docker run --network net_name --name apprun --hostname apprun -p 7081:7081 -d --
 - If not present in spec.yaml, sudo docker network ls
 - Find the name ending with ‘_net’
 
-## DApp project setup
+## Step 11 : DApp project setup
 Go to local GitHub folder ~/GitHub/{app directory}/client and run the following command to start the front end.
 ```
 npm install
