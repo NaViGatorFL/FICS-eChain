@@ -109,6 +109,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # Disk space overflow fix
 Create a file named daemon.json and place it in the /etc/docker directory. Content of the file can be the following JSON object: 
+```
 {
   "log-driver": "json-file",
   "log-opts": {
@@ -117,6 +118,7 @@ Create a file named daemon.json and place it in the /etc/docker directory. Conte
     "labels": "production_status"
   }
 }
+```
 [ Run the following command to read the file on Lab Ubuntu Machine $ cat /etc/docker/daemon.json ]
 
 
