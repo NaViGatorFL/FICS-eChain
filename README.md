@@ -75,9 +75,14 @@ sudo chown -R adminblk: ./
 sudo chmod -R 775 ./
 docker run --network net_name --name apprun --hostname apprun -p 7081:7081 -d --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/adminblk/mywork/vars:/vars -v /home/adminblk/mywork/vars/app/node:/go/src/github.com/app --entrypoint /vars/run/apprun.sh node:12.13.1-alpine3.10
 ```
-i.	Go to local GitHub folder ~/GitHub/{app directory}/client and run the following command to start the front end.
+### Notes:
+- We can directly place the apprun.sh script in script file (but have not explored this option yet)
+- For net_name, Get it from the spec.yaml 
+- If not present in spec.yaml, sudo docker network ls
+- Find the name ending with ‘_net’
 
 ## Project setup
+Go to local GitHub folder ~/GitHub/{app directory}/client and run the following command to start the front end.
 ```
 npm install
 ```
@@ -99,13 +104,6 @@ npm run lint
 
 ## Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-# Notes:
-- We can directly place the apprun.sh script in script file (but have not explored this option yet)
-- For net_name, Get it from the spec.yaml 
-- If not present in spec.yaml, sudo docker network ls
-- Find the name ending with ‘_net’
 
 # Disk space overflow fix
 Create a file named daemon.json and place it in the /etc/docker directory. Content of the file can be the following JSON object: 
