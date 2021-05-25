@@ -102,10 +102,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 # Notes:
-•	We can directly place the apprun.sh script in script file (but have not explored this option yet)
-•	For net_name, Get it from the spec.yaml 
-•	If not present in spec.yaml, sudo docker network ls
-•	Find the name ending with ‘_net’
+- We can directly place the apprun.sh script in script file (but have not explored this option yet)
+- For net_name, Get it from the spec.yaml 
+- If not present in spec.yaml, sudo docker network ls
+- Find the name ending with ‘_net’
 
 # Disk space overflow fix
 Create a file named daemon.json and place it in the /etc/docker directory. Content of the file can be the following JSON object: 
