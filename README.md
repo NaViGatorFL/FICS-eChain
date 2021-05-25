@@ -81,31 +81,31 @@ docker run --network net_name --name apprun --hostname apprun -p 7081:7081 -d --
 - If not present in spec.yaml, sudo docker network ls
 - Find the name ending with ‘_net’
 
-## Project setup
+## DApp project setup
 Go to local GitHub folder ~/GitHub/{app directory}/client and run the following command to start the front end.
 ```
 npm install
 ```
 
-## Compiles and hot-reloads for development
+### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-## Compiles and minifies for production
+### Compiles and minifies for production
 ```
 npm run build
 ```
 
-## Lints and fixes files
+### Lints and fixes files
 ```
 npm run lint
 ```
 
-## Customize configuration
+### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-# Disk space overflow fix
+# Disk space overflow bugfix
 Create a file named daemon.json and place it in the /etc/docker directory. Content of the file can be the following JSON object: 
 ```
 {
