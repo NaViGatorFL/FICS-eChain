@@ -8,19 +8,27 @@ Step 0
 Install Ubuntu 20.04 followed by Docker
 ##
 Step 1
-``
+```
 cd ~/mywork
-``
-(or the directory where minifabric is)
-##
-Step 2.	Assign Necessary permission (Replace adminblk with your username)
-##
-a.	sudo chown -R adminblk: ./
-b.	sudo chmod -R 775 ./
+```
+(OR go to the directory where minifabric is)
 
-Step 3.	 Start the Network 
-a.	sudo ./minifabric netup -o {current_org_name}
-b.	e.g. sudo ./minifabric netup -o org1.ficsechain.com
+##
+Step 2
+##
+Assign Necessary permission (Replace adminblk with your username)
+```
+sudo chown -R adminblk: ./
+sudo chmod -R 775 ./
+```
+##
+Step 3
+##
+Start the Network 
+```
+sudo ./minifabric netup -o {current_org_name}
+sudo ./minifabric netup -o org1.ficsechain.com
+```
 
 Step 4.	Create Channel 
 a.	sudo ./minifabric create
