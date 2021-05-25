@@ -1,39 +1,35 @@
-#
-eChain Deployment workflow
-#
+# eChain Deployment workflow
 Please follow the instructions below and run the commands
-##
-Step 0
-##
+## Step 0
 Install Ubuntu 20.04 followed by Docker
-##
-Step 1
+## Step 1
 ```
 cd ~/mywork
 ```
 (OR go to the directory where minifabric is)
 
-##
-Step 2
-##
+## Step 2
 Assign Necessary permission (Replace adminblk with your username)
 ```
 sudo chown -R adminblk: ./
 sudo chmod -R 775 ./
 ```
-##
-Step 3
-##
+## Step 3
 Start the Network 
 ```
 sudo ./minifabric netup -o {current_org_name}
 sudo ./minifabric netup -o org1.ficsechain.com
 ```
 
-Step 4.	Create Channel 
-a.	sudo ./minifabric create
-5.	Join Peers to channel
-a.	sudo ./minifabric join
+## Step 4	
+Create Channel 
+```
+sudo ./minifabric create
+```
+Join Peers to channel: 
+```
+sudo ./minifabric join
+```
 
 Step 6.	Do Anchor Update
 a.	sudo ./minifabric anchorupdate
