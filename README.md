@@ -1,8 +1,17 @@
-###
-Deployment workflow
-###
-Step 0: Install Ubuntu 20.04 followed by Docker
-Step 1:	cd ~/mywork (or the directory where minifabric is)
+#
+eChain Deployment workflow
+#
+Please follow the instructions below and run the commands
+##
+Step 0
+##
+Install Ubuntu 20.04 followed by Docker
+##
+Step 1
+``
+cd ~/mywork
+``
+(or the directory where minifabric is)
 ##
 Step 2.	Assign Necessary permission (Replace adminblk with your username)
 ##
