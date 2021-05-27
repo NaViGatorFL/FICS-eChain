@@ -23,7 +23,7 @@ mkdir -p ~/mywork && cd ~/mywork && curl -o minifab -sL https://tinyurl.com/yxa2
 Make sure you are in _mywork_ directory. (OR go to the directory wherever you downloaded the minifabric executable)
 2. Download eChain repository
 ```
-cd ~
+cd ~/../{GitHub-Repo-Dir}
 git clone https://github.com/NaViGatorFL/eChain.git
 ```
 This is a private repository, so, carefully input the credentials. After this, go back to _mywork_ directory.
