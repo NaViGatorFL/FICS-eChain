@@ -11,6 +11,8 @@ Please follow the instructions below and run the commands
 2. Install Docker V20.10.4+ (Follow instructions from here: https://docs.docker.com/engine/install/ubuntu/)
 3. Install NPM V14+ (Follow instructions from here: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
 
+This tutorial assumes the deployment is happening at the Ubuntu Server Machine in FICS lab. Please feel free to edit the following commands based on your target installation system. 
+
 ## Step 1
 ### Get the Minifabric Binaries 
 1. Get the script
@@ -42,24 +44,24 @@ Note that, you may need to run these two commands over and over again down the p
 ## Step 3
 Start the Network 
 ```
-sudo ./minifabric netup -o org1.ficsechain.com
+sudo ./minifab netup -o org1.ficsechain.com
 ```
 This command does Minifabrci magic. _netup_ starts up the network and _org1.ficsechain.com_ tells the _netup_ script to use the custom configuration given in _spec.yaml_. Under the hood, this scrip does everything to deploy a Hyperledger Fabric blockchain network. At this point, a Hyperledger Fabric network is installed and running. 
 
 ## Step 4	
 Create a Channel 
 ```
-sudo ./minifabric create
+sudo ./minifab create
 ```
 Join Peers to channel: 
 ```
-sudo ./minifabric join
+sudo ./minifab join
 ```
 
 ## Step 6
 Do Anchor Update
 ```
-sudo ./minifabric anchorupdate
+sudo ./minifab anchorupdate
 ```
 
 ## Step 7
@@ -75,15 +77,15 @@ sudo cp ~/{chaincode files - REPLACE} /.
 Install Chain Code
 
 ```
-sudo ./minifabric install -n chaincode_name -l node -d false
-sudo ./minifabric approve
-sudo ./minifabric commit
+sudo ./minifab install -n chaincode_name -l node -d false
+sudo ./minifab approve
+sudo ./minifab commit
 ```
 
 ## Step 9
 Generate profile
 ```
-sudo ./minifabric profilegen
+sudo ./minifab profilegen
 ```
 
 # eChain DApp Setup
