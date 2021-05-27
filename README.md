@@ -6,13 +6,30 @@ eChain deployment architecture is presented in the below diagram. The blockchain
 Please follow the instructions below and run the commands
 
 ## Step 0
-Install Ubuntu 20.04 and then install Docker 20.10.4+
+### Setup Development Environment
+1. Install Ubuntu V20.04+ (Note: You can install it on a standalone machine or in virtualbox of your personal computer.)
+2. Install Docker V20.10.4+ (Follow instructions from here: https://docs.docker.com/engine/install/ubuntu/)
+3. Install NPM V14+ (Follow instructions from here: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
 
 ## Step 1
+### Get the Minifabric Binaries 
+1. Get the script
 ```
-cd ~/mywork
+mkdir -p ~/mywork && cd ~/mywork && curl -o minifab -sL https://tinyurl.com/yxa2q6yr && chmod +x minifab
 ```
-(OR go to the directory where minifabric is)
+[Source: https://github.com/hyperledger-labs/minifabric]
+Make sure you are in _mywork_ directory. (OR go to the directory wherever you downloaded the minifabric executable)
+2. Download eChain repository
+```
+cd ~
+git clone https://github.com/NaViGatorFL/eChain.git
+```
+This is a private repository, so, carefully input the credentials. After this, go back to _mywork_ directory.
+
+3. Prepare (Copy) your blockchain network configuration. Note that the following command needs to be updated according to your system. 
+```
+sudo cp ~/../eChain/spec.yaml ~/../mywork/
+```
 
 ## Step 2
 Assign Necessary permission (Replace adminblk with your username)
@@ -20,15 +37,17 @@ Assign Necessary permission (Replace adminblk with your username)
 sudo chown -R adminblk: ./
 sudo chmod -R 775 ./
 ```
+Note that, you may need to run these two commands over and over again down the process. 
+
 ## Step 3
 Start the Network 
 ```
-sudo ./minifabric netup -o {current_org_name}
 sudo ./minifabric netup -o org1.ficsechain.com
 ```
+This command does Minifabrci magic. _netup_ starts up the network and _org1.ficsechain.com_ tells the _netup_ script to use the custom configuration given in _spec.yaml_. Under the hood, this scrip does everything to deploy a Hyperledger Fabric blockchain network. At this point, a Hyperledger Fabric network is installed and running. 
 
 ## Step 4	
-Create Channel 
+Create a Channel 
 ```
 sudo ./minifabric create
 ```
@@ -81,26 +100,24 @@ sudo chown -R adminblk: ./
 sudo chmod -R 775 ./
 docker run --network net_name --name apprun --hostname apprun -p 7081:7081 -d --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/adminblk/mywork/vars:/vars -v /home/adminblk/mywork/vars/app/node:/go/src/github.com/app --entrypoint /vars/run/apprun.sh node:12.13.1-alpine3.10
 ```
-### Notes:
+### Helpful Notes:
 - We can directly place the apprun.sh script in script file (but have not explored this option yet)
 - For net_name, Get it from the spec.yaml 
 - If not present in spec.yaml, sudo docker network ls
 - Find the name ending with ‘_net’
 
 ## Step 11 : DApp project setup
-Go to local GitHub folder ~/GitHub/{app directory}/client and run the following command to start the front end.
+Go to the _DApp_ folder on _eChain_ directory and run the following command to start the front end. First build it then run it. 
 ```
-npm install
+cd ~/../eChain/DApp
+sudo npm install
+sudo npm run serve
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+At this point, the app should be running. The following commands will be necessary in a production mode. You can skip them for now. 
 
 ### Compiles and minifies for production
 ```
-npm run build
+sudo npm run build
 ```
 
 ### Lints and fixes files
