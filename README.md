@@ -8,8 +8,9 @@ Please follow the instructions below and run the commands
 ## Step 0
 ### Setup Development Environment
 1. Install Ubuntu V20.04+ (Note: You can install it on a standalone machine or in virtualbox of your personal computer.)
-2. Install Docker V20.10.4+ (Follow instructions from here: https://docs.docker.com/engine/install/ubuntu/)
-3. Install NPM V14+ (Follow instructions from here: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
+2. Install Git (Just install the Ubuntu 20.04 default version)
+3. Install Docker V20.10.4+ (Just install the Ubuntu 20.04 default version. Extra help: https://docs.docker.com/engine/install/ubuntu/)
+4. Install NPM V14+ (Just install the Ubuntu 20.04 default version. Extra help: https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
 
 This tutorial assumes the deployment is happening at the Ubuntu Server Machine in FICS lab. Please feel free to edit the following commands based on your target installation system. 
 
@@ -23,20 +24,20 @@ mkdir -p ~/mywork && cd ~/mywork && curl -o minifab -sL https://tinyurl.com/yxa2
 Make sure you are in _mywork_ directory. (OR go to the directory wherever you downloaded the minifabric executable)
 2. Download eChain repository
 ```
-cd ~/../{GitHub-Repo-Dir}
+cd ~/{Git-Repo-Dir}
 git clone https://github.com/NaViGatorFL/eChain.git
 ```
 This is a private repository, so, carefully input the credentials. After this, go back to _mywork_ directory.
 
 3. Prepare (Copy) your blockchain network configuration. Note that the following command needs to be updated according to your system. 
 ```
-sudo cp ~/../eChain/spec.yaml ~/../mywork/
+sudo cp ~/{Git-Repo-Dir}/eChain/spec.yaml ~/../mywork/
 ```
 
 ## Step 2
 Assign Necessary permission (Replace adminblk with your username)
 ```
-sudo chown -R adminblk: ./
+sudo chown -R {username}: ./
 sudo chmod -R 775 ./
 ```
 Note that, you may need to run these two commands over and over again down the process. 
@@ -71,13 +72,13 @@ cd ./vars/chaincode
 sudo mkdir asset
 sudo mkdir node (if asset is developed in node)
 cd node
-sudo cp ~/{chaincode files - REPLACE} /.
+sudo cp ~/{Git-Repo-Dir}/chaincodes/* /.
 ```
 ## Step 8
 Install Chain Code
 
 ```
-sudo ./minifab install -n chaincode_name -l node -d false
+sudo ./minifab install -n {chaincode_name e.g. asset}-l node -d false
 sudo ./minifab approve
 sudo ./minifab commit
 ```
@@ -93,14 +94,18 @@ sudo ./minifab profilegen
 ## Step 10
 For deploying the app (node.js) (to get net_name refer Note)
 ```
-sudo ./minifab apprun (for creating the necessary apprun.sh script file, we can directly place this file but need to explore this option)
-if command do not end (stop it)
+sudo ./minifab apprun (Does not matter if it fails, just run anyway)
 cd ./vars/app/node
-sudo npm install
+sudo rm -r
+sudo cp ~/{Git-Repo-Dir}/blockchain-connector-server/*
 cd ~/mywork
 sudo chown -R adminblk: ./
 sudo chmod -R 775 ./
-docker run --network net_name --name apprun --hostname apprun -p 7081:7081 -d --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/adminblk/mywork/vars:/vars -v /home/adminblk/mywork/vars/app/node:/go/src/github.com/app --entrypoint /vars/run/apprun.sh node:12.13.1-alpine3.10
+cd ./vars/app/node
+sudo npm install
+cd ~/mywork
+sudo docker network ls (lookup and copy the XXX_net network name, and apply on the next command)
+sudo docker run --network {net_name} --name apprun --hostname apprun -p 7081:7081 -d --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/{username}/mywork/vars:/vars -v /home/{username}/mywork/vars/app/node:/go/src/github.com/app --entrypoint /vars/run/apprun.sh node:12.13.1-alpine3.10
 ```
 ### Helpful Notes:
 - We can directly place the apprun.sh script in script file (but have not explored this option yet)
@@ -111,9 +116,9 @@ docker run --network net_name --name apprun --hostname apprun -p 7081:7081 -d --
 ## Step 11 : DApp project setup
 Go to the _DApp_ folder on _eChain_ directory and run the following command to start the front end. First build it then run it. 
 ```
-cd ~/../eChain/DApp
-sudo npm install
-sudo npm run serve
+cd ~/{Git-Repo-Dir}/eChain/DApp
+npm install
+npm run serve
 ```
 At this point, the app should be running. The following commands will be necessary in a production mode. You can skip them for now. 
 
