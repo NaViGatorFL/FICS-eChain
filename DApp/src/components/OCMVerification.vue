@@ -5,7 +5,7 @@
     <!--      </label>-->
     <h1 id = "head"> Find Asset In BlockChain</h1>
     <input onclick="document.getElementById('custom').disabled = false; document.getElementById('file').disabled = true;" type="radio" name="type" checked="checked" id = "radiobutton"> Search by ID
-    <input type="text" name="custom" id="custom" v-model="input.data" placeholder="Enter SI or ECID" >
+    <input type="text" name="custom" id="custom" v-model="input.data" placeholder="Enter ECID" >
     <br><br>
     <label>
       <input onclick="document.getElementById('custom').disabled = true; document.getElementById('file').disabled = false;" type="radio" name="type" value="customurl"  id = "buttonForFile"> Search by File
@@ -217,8 +217,8 @@ export default {
 
       col.push("ecid");
       col.push("serialNumber");
-      col.push("verificationResults");
-      col.push("provenanceRecords");
+      col.push("Verification Results");
+      col.push("Provenance Records");
       col.push("PUF Verification");
 
       // CREATE DYNAMIC TABLE.
@@ -258,10 +258,10 @@ export default {
 
         xyz.value = "";
         // xyz.className = "badge bg-primary";
-        for(prov = 0; prov < myJSONArray[i].provenanceRecords.length; prov++){
-          //console.log(myJSONArray[i].provenanceRecords[prov].BlockType);
-          xyz.value = xyz.value.concat("[Owner: " + myJSONArray[i].provenanceRecords[prov].currOwnerName + ", BlockType: " + myJSONArray[i].provenanceRecords[prov].BlockType + "]");
-          if(prov != myJSONArray[i].provenanceRecords.length - 1)
+        for(prov = 0; myJSONArray[i] !== undefined && myJSONArray[i]["Provenance Records"] !== undefined && prov < myJSONArray[i]["Provenance Records"].length; prov++){
+          //console.log(myJSONArray[i]["Provenance Records"][prov].BlockType);
+          xyz.value = xyz.value.concat("[Owner: " + myJSONArray[i]["Provenance Records"][prov].currOwnerName + ", BlockType: " + myJSONArray[i]["Provenance Records"][prov].BlockType + "]");
+          if(prov != myJSONArray[i]["Provenance Records"].length - 1)
           xyz.value = xyz.value.concat(" -->>")
           tabCell.innerText = xyz.value;
         }

@@ -161,7 +161,7 @@ newapp.post('/GetAssetHistory', async (req, res) => {
 
 	// Get the contract from the network.
 	const contract = network.getContract('asset');
-	console.log('\n--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger');
+	console.log('\n--> Submit Transaction: Get Asset History');
 	let result = [];
 	for(var i = 0; i < req.body.data.length; i++) {
 
@@ -175,6 +175,10 @@ newapp.post('/GetAssetHistory', async (req, res) => {
 		let historyOwnwers = await contract.evaluateTransaction('GetAssetHistory', rowObj.serialNumber);
 		//console.log(historyOwnwers)
 		let parsedHistoryResponse = await JSON.parse(historyOwnwers);
+		if (parsedHistoryResponse[i] === undefined) {
+			console.log("\nParsed History Response is undefined");
+			continue;
+		}
 		parsedResponse["ECID"] = parsedHistoryResponse[i].Value.ecid;
 		var array = [];
 		for(var j = parsedHistoryResponse.length-1; j >= 0; j--){
@@ -259,7 +263,7 @@ newapp.post('/verifyOnLedger', async (req, res) => {
 	// Get the contract from the network.
 	const contract = network.getContract('asset');
 	let result = [];
-	console.log('\n--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger');
+	console.log('\n--> Submit Transaction: Verification On Ledger');
 	for(var i = 0; i < req.body.data.length; i++){
 		//console.log(req.body.data.length);
 		var rowObj = req.body.data[i];

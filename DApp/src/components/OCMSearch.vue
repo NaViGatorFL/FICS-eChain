@@ -5,7 +5,7 @@
 <!--      </label>-->
 <h1 id = "head"> Search Asset History</h1>
 <input onclick="document.getElementById('custom').disabled = false; document.getElementById('file').disabled = true;" type="radio" name="type" checked="checked" id = "radiobutton"> Search by ID
-<input type="text" name="custom" id="custom" v-model="input.data" placeholder="Enter SI" >
+<input type="text" name="custom" id="custom" v-model="input.data" placeholder="Enter Serial Number" >
 <br><br>
 <label>
   <input onclick="document.getElementById('custom').disabled = true; document.getElementById('file').disabled = false;" type="radio" name="type" value="customurl"  id = "buttonForFile"> Search by File
