@@ -255,10 +255,10 @@ export default {
 
         xyz.value = "";
         // xyz.className = "badge bg-primary";
-        for(prov = 0; prov < myJSONArray[i].provenanceRecords.length; prov++){
-          //console.log(myJSONArray[i].provenanceRecords[prov].BlockType);
-          xyz.value = xyz.value.concat("[Owner: " + myJSONArray[i].provenanceRecords[prov].currOwnerName + ", BlockType: " + myJSONArray[i].provenanceRecords[prov].BlockType + "]");
-          if(prov != myJSONArray[i].provenanceRecords.length - 1)
+        for(prov = 0; myJSONArray[i] !== undefined && myJSONArray[i]["Provenance Records"] !== undefined && prov < myJSONArray[i]["Provenance Records"].length; prov++){
+          //console.log(myJSONArray[i]["Provenance Records"][prov].BlockType);
+          xyz.value = xyz.value.concat("[Owner: " + myJSONArray[i]["Provenance Records"][prov].currOwnerName + ", BlockType: " + myJSONArray[i]["Provenance Records"][prov].BlockType + "]");
+          if(prov != myJSONArray[i]["Provenance Records"].length - 1)
           xyz.value = xyz.value.concat(" -->>")
           tabCell.innerText = xyz.value;
         }

@@ -20,7 +20,12 @@ import ICDistributor2Search from "@/components/ICDistributor2Search";
 import ICDistributor1Search from "@/components/ICDistributor1Search";
 import OCMSearch from "@/components/OCMSearch";
 
+try {
 Vue.use(Router)
+}
+catch(e) {
+  console.error(e);
+}
 
 export default new Router({
   routes: [
